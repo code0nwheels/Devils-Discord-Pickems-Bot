@@ -64,7 +64,7 @@ class Pickems():
             try:
                 games = await self.get_games()
 
-                if games != '':
+                if games is not None:
                     for game_id, game_info in games.items():
                         if game_info[5] and game_id not in self.locked_games:
                             message_id = await self.db.get_message(game_id)
@@ -104,26 +104,27 @@ class Pickems():
         self.log.info("Getting games")
         all_games = {}
         all_embeds = {}
+        games = []
 
         localtz = get_localzone()
 
         curdt = localtz.localize(datetime.now())
         est = curdt.astimezone(timezone('US/Eastern'))
-        date = est.strftime('%Y-%m-%d')
+        currentDate = est.strftime('%Y-%m-%d')
 
         try:        
             async with aiohttp.ClientSession() as session:
                 async with session.get("https://api-web.nhle.com/v1/scoreboard/now") as response:
-                    games = await response.json()
-            for date_ in games['gamesByDate']:
-                if date_['date'] == date:
-                    games = date_['games']
+                    api_games = await response.json()
+            for gameDate in api_games['gamesByDate']:
+                if gameDate['date'] == currentDate:
+                    games = gameDate['games']
                     break
         except Exception as e:
             self.log.exception(e)
             if embed:
-                return '', None
-            return ''
+                return None, None
+            return None
 
         if len(games) == 0:
             self.log.info("No games today")
@@ -158,7 +159,7 @@ class Pickems():
                     all_embeds[str(game_id)] = embed
         
         if len(all_games) == 0:
-            self.log.info("No games today")
+            self.log.info("No regular season games today")
             return None, None
             
         if embed:
@@ -172,12 +173,12 @@ class Pickems():
         while True:
             games, embeds = await self.get_games(True)
 
-            if games == '' and count < 5:
+            if not games and count < 5:
                 await asyncio.sleep(60)
                 count += 1
                 continue
 
-            if games is not None and games != '':
+            if games:
                 # find the daily-pickems channel
                 channel = get(self.bot.get_all_channels(), name='daily-pickems')
                 for game_id, game_info in games.items():
