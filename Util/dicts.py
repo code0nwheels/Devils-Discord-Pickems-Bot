@@ -10,7 +10,7 @@ emojiDict =	{
     "9": "<:OttawaSenators:580095936227835904>",
     "10": "<:TorontoMapleLeafs:580095905164820500>",
     "12": "<:CarolinaHurricanes:580095916963397632>",
-    "13":  "<:FloridaPanthers:580095939809640506>",
+    "13": "<:FloridaPanthers:580095939809640506>",
     "14": "<:TampaBayLightning:580095895148691476>",
     "15": "<:WashingtonCapitals:580095895836557332>",
     "16": "<:ChicagoBlackhawks:580095942339067905>",
@@ -21,7 +21,7 @@ emojiDict =	{
     "21": "<:ColoradoAvalanche:580095938107015198>",
     "22": "<:EdmontonOilers:580095894876323862>",
     "23": "<:VancouverCanucks:580095942091603979>",
-    "24": "<:AnaheimDucks:580095824764338186>",
+    "24": "<:nhlAnaheimDucks:1255612915025973338>",
     "25": "<:DallasStars:580095918804697104>",
     "26": "<:LosAngelesKings:580095899578138624>",
     "28": "<:SanJoseSharks:580095923842187268>",
@@ -30,7 +30,8 @@ emojiDict =	{
     "52": "<:WinnipegJets:580095939713171459>",
     "53": "<:ArizonaCoyotes:901585073013411861>",
     "54": "<:VegasGoldenKnights:580095937565818893>",
-    "55": "<:SeattleKraken:735964084826144770>"
+    "55": "<:SeattleKraken:735964084826144770>",
+    "59": "<:nhlUtahHC:1252378314799190066>"
 }
 
 teamDict =	{
@@ -65,5 +66,6 @@ teamDict =	{
     "52": "Winnipeg Jets",
     "53": "Arizona Coyotes",
     "54": "Vegas Golden Knights",
-    "55": "Seattle Kraken"
+    "55": "Seattle Kraken",
+    "59": "Utah Hockey Club"
 }
