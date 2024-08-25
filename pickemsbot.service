@@ -1,0 +1,11 @@
+[Unit]
+Description=Devils Pickems Discord Bot
+After=multi-user.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/discord/pickems
+ExecStart=/usr/bin/python3 /root/discord/pickems/main.py
+
+[Install]
+WantedBy=multi-user.target
