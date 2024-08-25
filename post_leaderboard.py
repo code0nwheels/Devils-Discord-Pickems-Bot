@@ -1,13 +1,13 @@
 import discord
+import os
 
 from datetime import datetime
 from pytz import timezone
 from tzlocal import get_localzone
 from Util.Leaderboard import Leaderboard
+from dotenv import load_dotenv
 
-# get the bot's token from token.txt 
-with open('token.txt', 'r') as f:
-    token = f.read()
+load_dotenv()
 
 # create the bot
 bot = discord.Bot()
@@ -45,4 +45,4 @@ async def on_ready():
     await bot.close()
 
 # run the bot
-bot.run(token)
+bot.run(os.getenv('TOKEN'))
