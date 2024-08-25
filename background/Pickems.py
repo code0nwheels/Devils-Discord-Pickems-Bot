@@ -201,5 +201,5 @@ class Pickems():
             #sleep until 3am
             now = datetime.now()
             to = (now + timedelta(days = 1)).replace(hour=3, minute=8, second=0)
-            print(f"Sleeping for {to - now}")
+            self.log.info(f"Sleeping for {to - now}")
             await asyncio.sleep((to - now).total_seconds())
