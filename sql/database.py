@@ -1,12 +1,15 @@
 import aiomysql
-import asyncio
+import os
 from discord.ext import commands
+from dotenv import load_dotenv
 
 import logging
 from logging.handlers import RotatingFileHandler
 
 class Database(commands.Cog):
 	def __init__(self, bot):
+		load_dotenv()
+
 		self.bot = bot
 		self.pool = None
 		logging.basicConfig(level=logging.INFO)
@@ -21,8 +24,7 @@ class Database(commands.Cog):
 		self.log.addHandler(handler)
 
 	async def login(self):
-		with open("db.txt") as f:
-			dbinfo = f.read().split('\n')
+		dbinfo = (os.getenv('DB_USER'), os.getenv('DB_PASSWORD'), os.getenv('DB_NAME'))
 
 		self.pool = await aiomysql.create_pool(host='localhost', port=3306,
 								user=dbinfo[0], password=dbinfo[1],

@@ -1,11 +1,16 @@
 import mysql.connector
 import requests
 import sys
+import os
 
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
 
-with open("db.txt") as f:
-    dbinfo = f.read().split('\n')
+# Load environment variables
+load_dotenv()
+
+# Get database info
+dbinfo = [os.getenv('DB_USER'), os.getenv('DB_PASSWORD'), os.getenv('DB_NAME')]
 # Connect to the database
 db = mysql.connector.connect(host='localhost', port=3306,
 								user=dbinfo[0], password=dbinfo[1],

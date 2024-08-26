@@ -11,8 +11,10 @@ from background.Leaderboard import Leaderboard
 from Util import create_embed
 from Util.dicts import teamDict
 
-with open('gid.txt') as f:
-    guild_id = int(f.read().strip())
+from dotenv import load_dotenv
+
+load_dotenv()
+guild_id = int(os.getenv('GUILD_ID'))
 
 class BotCommands(commands.Cog):
     def __init__(self, bot):
